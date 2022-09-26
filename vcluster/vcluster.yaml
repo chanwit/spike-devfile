@@ -1,0 +1,36 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: loft-sh
+  namespace: team-denim
+spec:
+  interval: 1h0s
+  url: https://charts.loft.sh
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: dev
+  namespace: team-denim
+spec:
+  chart:
+    spec:
+      chart: vcluster
+      sourceRef:
+        kind: HelmRepository
+        name: loft-sh
+  interval: 1h0s
+  releaseName: dev
+  targetNamespace: team-denim
+  values:
+    vcluster:
+      image: rancher/k3s:v1.23.5-k3s1 
+    mapServices:
+      fromHost: 
+      - from: dockercoins/redis
+        to: default/redis      
+      fromVirtual: 
+      - from: default/rng
+        to: rng
+

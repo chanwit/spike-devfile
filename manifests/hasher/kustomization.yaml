@@ -1,0 +1,3 @@
+resources:
+  - hasher-deployment.yaml
+  - hasher-service.yaml

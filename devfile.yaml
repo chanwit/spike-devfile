@@ -1,0 +1,26 @@
+schemaVersion: "2.1.0"
+metadata:
+  name: "gitops run example"
+  version: "1.0.0"
+projects:
+  - name: "dockercoins"
+    git:
+      remotes:
+        origin: "https://github.com/chanwit/dockercoins"
+      checkoutFrom:
+        revision: "main"
+        remote: origin
+components:
+  - name: the-whole-app
+    kubernetes:
+      uri: "./manifests"
+commands:
+  - id: gitops-run-the-whole-app
+    apply:
+      component: the-whole-app
+    attributes:
+      gitops-run:
+        port-forwards:
+        - namespace: dockercoins
+          resource: svc/webui
+          port: 8080:8080

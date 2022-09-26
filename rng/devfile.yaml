@@ -1,0 +1,23 @@
+schemaVersion: "2.1.0"
+metadata:
+  name: rng-dev
+  version: "1.0.0"
+parent:
+  uri: ../devfile.yaml
+components:
+  - name: only-rng-app
+    kubernetes:
+      uri: "./manifests/rng"
+commands:
+  - id: gitops-run-the-whole-app
+    apply:
+      component: only-rng-app
+    attributes:
+      gitops-run:
+        service-maps:
+        - from: dockercoins/redis
+          to: dockercoins/redis
+        port-forwards:
+        - namespace: dockercoins
+          resource: svc/rng
+          port: 8081:80

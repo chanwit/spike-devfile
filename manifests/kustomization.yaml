@@ -1,0 +1,17 @@
+resources:
+  - hasher
+  - redis
+  - rng
+  - webui
+  - worker
+  - ingress
+images:
+  - name: docker.io/chanwit/hasher:v1
+    newTag: v3
+  - name: docker.io/chanwit/rng:v1
+    newTag: v3
+  - name: docker.io/chanwit/worker:v1
+    newTag: v3
+  - name: docker.io/chanwit/webui:v1
+    newTag: v14
+namespace: default

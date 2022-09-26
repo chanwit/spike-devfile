@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: hasher
+  name: hasher
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: hasher
+  template:
+    metadata:
+      labels:
+        io.kompose.service: hasher
+    spec:
+      containers:
+        - image: docker.io/chanwit/hasher:v1
+          name: hasher
+          ports:
+            - containerPort: 80
+      restartPolicy: Always

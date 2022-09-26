@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: rng
+  name: rng
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: rng
+  template:
+    metadata:
+      labels:
+        io.kompose.service: rng
+    spec:
+      containers:
+        - image: docker.io/chanwit/rng:v1
+          name: rng
+          ports:
+            - containerPort: 80
+      restartPolicy: Always

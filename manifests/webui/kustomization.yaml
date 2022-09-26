@@ -1,0 +1,3 @@
+resources:
+  - webui-deployment.yaml
+  - webui-service.yaml

@@ -1,0 +1,5 @@
+resources:
+  - rng-deployment.yaml
+  - rng-service.yaml
+namespace: default
+
